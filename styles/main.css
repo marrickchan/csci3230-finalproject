@@ -1,16 +1,19 @@
+.bd-pageheader {
+    padding: 2rem .9375rem;
+    margin-bottom: 1.5rem;
+    color: #FFFFFF;
+    text-align: center;
+    background-color: #FF3030;
+}
 
+.fullwidth {
+    width: 100%;
+}
 
+#difficultyoverview {
+    margin-top: 50px;
+}
 
-footer {
-	position: fixed;
-	left: 0px;
-	bottom: 0px;
-	width: 100%;
-	height: 25px;
-	padding-top: 8px;
-	
-	background-color: #555500;
-
-	text-align: center;
-	color: #FFFFFF;
+table td, table th {
+    text-align: center;
 }

@@ -1,39 +1,388 @@
 <!DOCTYPE html>
-<html>
-	<head>
-        <meta charset="utf-8" />
-		<title>Diablo 3 Resource Center</title>
-        <link rel="stylesheet" href="styles/main.css" />
-	</head>
+<html lang="en">
+    <head>
+        <title>Bootstrap</title>
 
-	<body>
-        <div id="wrapper">
-            <header>
-                <div id="logo">
-                </div>
-                
-                <nav>
-                    <ul>
-                        <li><a href="#" class="active">Home</a></li>
-
-                    </ul>
-                </nav>                
-            </header>
-            
-            
-            <div id="content">
-                <article>
-                    <content>
-                        Monk's Shenlong Fist Set Build
-                    </content>
-                </article>
-            </div>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
         
-                
-            <footer>
-                &copy; Copyright - Marrick and Thomas (2016)
-            </footer>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="styles/main.css" />
+
+    </head>
+    <body data-spy="scroll" data-target=".navbar" data-offset="50">
+        <div class="navbar-toggleable-xs" id="bd-main-nav">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header"><a class="navbar-brand" href="#">Diablo Resource Center</a></div>
+                    <ul class="nav navbar-nav"> 
+                        <li class="active"><a href="#difficultyoverview">Difficulty Overview</a></li>
+                        <li><a href="#classes">Classes</a></li>
+                        <li><a href="#leaderboards">Leaderboards</a></li> 
+                        <li><a href="#seasonbests">Season Bests</a></li>
+                    </ul>
+                </div>
+            </nav>
         </div>
 		
-	</body>
+        <div class="bd-pageheader text-xs-center text-sm-left" id="difficultyoverview">
+            <div class="container">
+                <h1>Difficulty Overview</h1>
+                <p class="lead">
+                    As more Torment Difficulties get added, the rates for different features of the game change. Here are the current rates for all the difficulties.
+                </p>
+            </div>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Difficulty Setting</th>
+                        <th>Normal</th>
+                        <th>Hard</th>
+                        <th>Expert</th>
+                        <th>Master</th>
+                        <th>T1</th>
+                        <th>T2</th>
+                        <th>T3</th>
+                        <th>T4</th>
+                        <th>T5</th>
+                        <th>T6</th>
+                        <th>T7</th>
+                        <th>T8</th>
+                        <th>T9</th>
+                        <th>T10</th>
+                        <th>T11</th>
+                        <th>T12</th>
+                        <th>T13</th>
+                    </tr>
+                </thead>
+                <tbody class="">
+                    <tr>
+                        <td>GR Equivalent</td>
+                        <td>-</td>
+                        <td>GR1</td>
+                        <td>GR4</td>
+                        <td>GR7</td>
+                        <td>GR10</td>
+                        <td>GR13</td>
+                        <td>GR16</td>
+                        <td>GR19</td>
+                        <td>GR22</td>
+                        <td>GR25</td>
+                        <td>GR30</td>
+                        <td>GR35</td>
+                        <td>GR40</td>
+                        <td>GR45</td>
+                        <td>GR50</td>
+                        <td>GR55</td>
+                        <td>GR60</td>
+                    </tr>
+                    <tr>
+                        <td>Monster Health</td>
+                        <td>100%</td>
+                        <td>200%</td>
+                        <td>320%</td>
+                        <td>512%</td>
+                        <td>819%</td>
+                        <td>1311%</td>
+                        <td>2097%</td>
+                        <td>3355%</td>
+                        <td>5369%</td>
+                        <td>8590%</td>
+                        <td>18985%</td>
+                        <td>41625%</td>
+                        <td>91260%</td>
+                        <td>200082%</td>
+                        <td>438669%</td>
+                        <td>961759%</td>
+                        <td>2108607%</td>
+                    </tr>
+                    <tr>
+                        <td>Monster Damage</td>
+                        <td>100%</td>
+                        <td>130%</td>
+                        <td>189%</td>
+                        <td>273%</td>
+                        <td>396%</td>
+                        <td>575%</td>
+                        <td>833%</td>
+                        <td>1208%</td>
+                        <td>1752%</td>
+                        <td>2540%</td>
+                        <td>3604%</td>
+                        <td>5097%</td>
+                        <td>7208%</td>
+                        <td>10194%</td>
+                        <td>14416%</td>
+                        <td>20387%</td>
+                        <td>28832%</td>
+                    </tr>
+                    <tr>
+                        <td>+XP</td>
+                        <td>0%</td>
+                        <td>75%</td>
+                        <td>100%</td>
+                        <td>200%</td>
+                        <td>300%</td>
+                        <td>400%</td>
+                        <td>550%</td>
+                        <td>800%</td>
+                        <td>1150%</td>
+                        <td>1600%</td>
+                        <td>1900%</td>
+                        <td>2425%</td>
+                        <td>3100%</td>
+                        <td>4000%</td>
+                        <td>5000%</td>
+                        <td>6400%</td>
+                        <td>8200%</td>
+                    </tr>
+                    <tr>
+                        <td>+Gold</td>
+                        <td>0%</td>
+                        <td>75%</td>
+                        <td>100%</td>
+                        <td>200%</td>
+                        <td>300%</td>
+                        <td>400%</td>
+                        <td>550%</td>
+                        <td>800%</td>
+                        <td>1150%</td>
+                        <td>1600%</td>
+                        <td>1850%</td>
+                        <td>2150%</td>
+                        <td>2500%</td>
+                        <td>2900%</td>
+                        <td>3350%</td>
+                        <td>3900%</td>
+                        <td>4500%</td>
+                    </tr>
+                    <tr>
+                        <td>Legendary Drop</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                        <td>15%</td>
+                        <td>32%</td>
+                        <td>52%</td>
+                        <td>75%</td>
+                        <td>101%</td>
+                        <td>131%</td>
+                        <td>164%</td>
+                        <td>205%</td>
+                        <td>256%</td>
+                        <td>320%</td>
+                        <td>400%</td>
+                        <td>500%</td>
+                        <td>625%</td>
+                    </tr>
+                    <tr>
+                        <td>Legendary Drop (Rift)</td>
+                        <td>25%</td>
+                        <td>25%</td>
+                        <td>25%</td>
+                        <td>25%</td>
+                        <td>44%</td>
+                        <td>65%</td>
+                        <td>90%</td>
+                        <td>119%</td>
+                        <td>151%</td>
+                        <td>189%</td>
+                        <td>236%</td>
+                        <td>295%</td>
+                        <td>369%</td>
+                        <td>461%</td>
+                        <td>577%</td>
+                        <td>721%</td>
+                        <td>901%</td>
+                    </tr>
+                    <tr>
+                        <td>Death's Breath</td>
+                        <td>15%</td>
+                        <td>18%</td>
+                        <td>21%</td>
+                        <td>25%</td>
+                        <td>31%</td>
+                        <td>37%</td>
+                        <td>44%</td>
+                        <td>53%</td>
+                        <td>64%</td>
+                        <td>75%</td>
+                        <td>90%</td>
+                        <td>15% (2)</td>
+                        <td>25% (2)</td>
+                        <td>50% (2)</td>
+                        <td>90% (2)</td>
+                        <td>12% (3)</td>
+                        <td>25% 93)</td>
+                    </tr>
+                    <tr>
+                        <td>GR Key</td>
+                        <td>1</td>
+                        <td>5% (2)</td>
+                        <td>10% (2)</td>
+                        <td>15% (2)</td>
+                        <td>20% (2)</td>
+                        <td>25% (2)</td>
+                        <td>31% (2)</td>
+                        <td>38% (2)</td>
+                        <td>44% (2)</td>
+                        <td>51% (2)</td>
+                        <td>60% (2)</td>
+                        <td>70% (2)</td>
+                        <td>80% (2)</td>
+                        <td>90% (2)</td>
+                        <td>3</td>
+                        <td>12% (3)</td>
+                        <td>25% 93)</td>
+                    </tr>
+                    <tr>
+                        <td>Cache Materials</td>
+                        <td>2 (1)</td>
+                        <td>2 (1)</td>
+                        <td>2 (1)</td>
+                        <td>2 (1)</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>Cache Legendaries</td>
+                        <td>10%</td>
+                        <td>10%</td>
+                        <td>10%</td>
+                        <td>10%</td>
+                        <td>10%</td>
+                        <td>50%</td>
+                        <td>60%</td>
+                        <td>75%</td>
+                        <td>90%</td>
+                        <td>100%</td>
+                        <td>5% (2)</td>
+                        <td>15% (2)</td>
+                        <td>25% (2)</td>
+                        <td>50% (2)</td>
+                        <td>60% (2)</td>
+                        <td>70% (2)</td>
+                        <td>85% (2)</td>
+                    </tr>
+                    <tr>
+                        <td>Keywarden Drop</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>50%</td>
+                        <td>75%</td>
+                        <td>90%</td>
+                        <td>100%</td>
+                        <td>10% (2)</td>
+                        <td>20% (2)</td>
+                        <td>30% (2)</td>
+                        <td>40% (2)</td>
+                        <td>50% (2)</td>
+                        <td>60% (2)</td>
+                        <td>70% (2)</td>
+                        <td>80% (2)</td>
+                        <td>90% (2)</td>
+                    </tr>
+                    <tr>
+                        <td>Uber Organ Drop</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>1</td>
+                        <td>10% (2)</td>
+                        <td>25% (2)</td>
+                        <td>50% (2)</td>
+                        <td>75% (2)</td>
+                        <td>90% (2)</td>
+                        <td>2</td>
+                        <td>10% (3)</td>
+                        <td>25% (3)</td>
+                        <td>50% (3)</td>
+                        <td>75% (3)</td>
+                        <td>90% (3)</td>
+                        <td>3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="bd-pageheader text-xs-center text-sm-left" id="classes">
+              <div class="container">
+                <h1>Classes</h1>
+                <p class="lead">
+                  In Diablo 3, there are 6 main classes as shown below. Choose the one to your liking when you play!
+                </p>
+              </div>
+        </div>		
+		<div class="container">
+		<ul class="nav nav-tabs nav-justified fullwidth">
+            <li class="active"><a data-toggle="tab" href="#wd">Witch Doctor</a></li>
+            <li><a data-toggle="tab" href="#barb">Barbarian</a></li>
+            <li><a data-toggle="tab" href="#monk">Monk</a></li>
+            <li><a data-toggle="tab" href="#wiz">Wizard</a></li>
+            <li><a data-toggle="tab" href="#dh">Demon Hunter</a></li>
+            <li><a data-toggle="tab" href="#crus">Crusader</a></li>
+		</ul>
+
+        <div class="tab-content">
+            <div id="wd" class="tab-pane fade in active">
+                <h3>Witch Doctor</h3>
+                <div class="lead">
+                    <p>Witch Doctors mostly fight with spells and pets.</p>
+                </div>
+            </div>
+            <div id="barb" class="tab-pane fade">
+                <h3>Barbarian</h3>
+                <div class="lead">
+                    <p>Barbarians are great tank characters.</p>
+                </div>
+            </div>
+            <div id="monk" class="tab-pane fade">
+                <h3>Monk</h3>
+                <div class="lead">
+                    <p>Monks are great at healing teammates and dealing devastating blows if necessary</p>
+                </div>
+            </div>
+            <div id="wiz" class="tab-pane fade">
+                <h3>Wizard</h3>
+                <div class="lead">
+                    <p>Wizards use spells to fight.</p>
+                </div>
+            </div>
+            <div id="dh" class="tab-pane fade">
+                <h3>Demon Hunter</h3>
+                <div class="lead">
+                    <p>Demon Hunters use their bow or crossbow to rapidly clear enemies.</p>
+                </div>
+            </div>
+            <div id="crus" class="tab-pane fade">
+                <h3>Crusader</h3>
+                <div class="lead">
+                    <p>Crusaders use their shield to gain the advantage in battle.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+    
+    <footer>&copy; Copyright - Marrick and Thomas (2016) </footer>
 </html>
