@@ -17,3 +17,8 @@
 table td, table th {
     text-align: center;
 }
+
+.gemClicked {
+    border: 1px;
+    border-color: red;
+}

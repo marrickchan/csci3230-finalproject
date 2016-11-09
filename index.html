@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Bootstrap</title>
+        <title>Diablo 3 Info Center</title>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,10 +10,12 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="legendarygems.js"></script>
         <link rel="stylesheet" href="styles/main.css" />
 
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
+        <!-- Navigation Bar Section STARTS -->
         <div class="navbar-toggleable-xs" id="bd-main-nav">
             <nav class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container-fluid">
@@ -21,13 +23,16 @@
                     <ul class="nav navbar-nav"> 
                         <li class="active"><a href="#difficultyoverview">Difficulty Overview</a></li>
                         <li><a href="#classes">Classes</a></li>
+                        <li><a href="#legendarygems">Legendary Gems</a></li>
                         <li><a href="#leaderboards">Leaderboards</a></li> 
                         <li><a href="#seasonbests">Season Bests</a></li>
                     </ul>
                 </div>
             </nav>
         </div>
+        <!-- Navigation Bar Section ENDS -->
 		
+        <!-- Difficulty Section STARTS with Difficulty Table -->
         <div class="bd-pageheader text-xs-center text-sm-left" id="difficultyoverview">
             <div class="container">
                 <h1>Difficulty Overview</h1>
@@ -325,7 +330,9 @@
                 </tbody>
             </table>
         </div>
+        <!-- Difficulty Section ENDS with Difficulty Table -->
         
+        <!-- Classes Section STARTS with Diablo 3 Class Information -->
         <div class="bd-pageheader text-xs-center text-sm-left" id="classes">
               <div class="container">
                 <h1>Classes</h1>
@@ -335,54 +342,73 @@
               </div>
         </div>		
 		<div class="container">
-		<ul class="nav nav-tabs nav-justified fullwidth">
-            <li class="active"><a data-toggle="tab" href="#wd">Witch Doctor</a></li>
-            <li><a data-toggle="tab" href="#barb">Barbarian</a></li>
-            <li><a data-toggle="tab" href="#monk">Monk</a></li>
-            <li><a data-toggle="tab" href="#wiz">Wizard</a></li>
-            <li><a data-toggle="tab" href="#dh">Demon Hunter</a></li>
-            <li><a data-toggle="tab" href="#crus">Crusader</a></li>
-		</ul>
+            <ul class="nav nav-tabs nav-justified fullwidth">
+                <li class="active"><a data-toggle="tab" href="#wd">Witch Doctor</a></li>
+                <li><a data-toggle="tab" href="#barb">Barbarian</a></li>
+                <li><a data-toggle="tab" href="#monk">Monk</a></li>
+                <li><a data-toggle="tab" href="#wiz">Wizard</a></li>
+                <li><a data-toggle="tab" href="#dh">Demon Hunter</a></li>
+                <li><a data-toggle="tab" href="#crus">Crusader</a></li>
+            </ul>
 
-        <div class="tab-content">
-            <div id="wd" class="tab-pane fade in active">
-                <h3>Witch Doctor</h3>
-                <div class="lead">
-                    <p>Witch Doctors mostly fight with spells and pets.</p>
+            <div class="tab-content">
+                <div id="wd" class="tab-pane fade in active">
+                    <h3>Witch Doctor</h3>
+                    <div class="lead">
+                        <p>Witch Doctors mostly fight with spells and pets.</p>
+                    </div>
                 </div>
-            </div>
-            <div id="barb" class="tab-pane fade">
-                <h3>Barbarian</h3>
-                <div class="lead">
-                    <p>Barbarians are great tank characters.</p>
+                <div id="barb" class="tab-pane fade">
+                    <h3>Barbarian</h3>
+                    <div class="lead">
+                        <p>Barbarians are great tank characters.</p>
+                    </div>
                 </div>
-            </div>
-            <div id="monk" class="tab-pane fade">
-                <h3>Monk</h3>
-                <div class="lead">
-                    <p>Monks are great at healing teammates and dealing devastating blows if necessary</p>
+                <div id="monk" class="tab-pane fade">
+                    <h3>Monk</h3>
+                    <div class="lead">
+                        <p>Monks are great at healing teammates and dealing devastating blows if necessary</p>
+                    </div>
                 </div>
-            </div>
-            <div id="wiz" class="tab-pane fade">
-                <h3>Wizard</h3>
-                <div class="lead">
-                    <p>Wizards use spells to fight.</p>
+                <div id="wiz" class="tab-pane fade">
+                    <h3>Wizard</h3>
+                    <div class="lead">
+                        <p>Wizards use spells to fight.</p>
+                    </div>
                 </div>
-            </div>
-            <div id="dh" class="tab-pane fade">
-                <h3>Demon Hunter</h3>
-                <div class="lead">
-                    <p>Demon Hunters use their bow or crossbow to rapidly clear enemies.</p>
+                <div id="dh" class="tab-pane fade">
+                    <h3>Demon Hunter</h3>
+                    <div class="lead">
+                        <p>Demon Hunters use their bow or crossbow to rapidly clear enemies.</p>
+                    </div>
                 </div>
-            </div>
-            <div id="crus" class="tab-pane fade">
-                <h3>Crusader</h3>
-                <div class="lead">
-                    <p>Crusaders use their shield to gain the advantage in battle.</p>
+                <div id="crus" class="tab-pane fade">
+                    <h3>Crusader</h3>
+                    <div class="lead">
+                        <p>Crusaders use their shield to gain the advantage in battle.</p>
+                    </div>
                 </div>
             </div>
         </div>
+            
+        <!-- Classes Section ENDS with Diablo 3 Class Information -->
+            
+        <!-- Legendary Gems Section STARTS small applet -->            
+        <div class="bd-pageheader text-xs-center text-sm-left" id="legendarygems">
+            <div class="container">
+                <h1>Legendary Gem Calculator</h1>
+                <p class="lead">
+                    In Diablo 3, there are 21 Legendary Gems that give you special effects to increase your power. This calculator lets you see what Greater Rift Level you need to play to get what chance at leveling your gems.
+                </p>
+            </div>
+        </div>
+        <div id="legendarygemsapplet">
+            
+        </div>
+        <!-- Legendary Gems Section ENDS small applet -->
+            
+        
     </body>
-    
+    <p>&nbsp;&nbsp;</p>
     <footer>&copy; Copyright - Marrick and Thomas (2016) </footer>
 </html>
