@@ -1,0 +1,24 @@
+{
+  "name": "csci3230-final-project",
+  "version": "1.0.0",
+  "description": "Final Project for CSCI 3230",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marrickchan/csci3230-finalproject.git"
+  },
+  "author": "Marrick Chan & Thomas Frantz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marrickchan/csci3230-finalproject/issues"
+  },
+  "homepage": "https://github.com/marrickchan/csci3230-finalproject#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "pug": "^2.0.0-beta6"
+  }
+}

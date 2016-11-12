@@ -1,0 +1,30 @@
+doctype html
+html
+	head
+		title Diablo 3 Info Centre
+		link(rel="stylesheet",href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
+		link(rel="stylesheet",href="styles/main.css")
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+		script(src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js")
+		script(type="text/javascript",src="scripts/legendarygems.js")
+		script(type="text/javascript",src="scripts/profiles.js")
+	body
+		div(class="navbar-toggleable-xs",id="bd-main-nav")
+			nav(class="navbar navbar-inverse navbar-fixed-top")
+				div(class="container-fluid")
+					div(class="navbar-header")
+						a(class="navbar-brand",href="#") Diablo Resource Centre
+					ul(class="nav navbar-nav")
+						li
+							a(href="/difficultyoverview") Difficulty Overview
+						li
+							a(href="/classes") Classes
+						li
+							a(href="/legendarygems") Legendary Gems
+						li
+							a(href="/leaderboards") Leaderboards
+						li
+							a(href="/seasonbests") Season Bests
+
+
+		block content
