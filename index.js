@@ -3,7 +3,6 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
-
 // Middleware
 // Body Parser
 app.use(bodyParser.urlencoded({
@@ -18,12 +17,28 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 
 // Routing
-app.get('/', function(request,response){
+app.get(['/', '/index'], function(request,response){
 	response.render('index');
 });
 
 app.get('/difficultyoverview', function(request,response){
 	response.render('difficultyoverview');
+});
+
+app.get('/classes', function(request,response){
+	response.render('classes');
+});
+
+app.get('/legendarygems', function(request,response){
+	response.render('legendarygems');
+});
+
+app.get('/leaderboards', function(request,response){
+	response.render('leaderboards');
+});
+
+app.get('/seasonbests', function(request,response){
+	response.render('seasonbests');
 });
 
 // Run Listener

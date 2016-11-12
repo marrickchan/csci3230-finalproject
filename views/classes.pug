@@ -1,0 +1,46 @@
+extends layout
+block content
+	div(class="bd-pageheader text-xs-center text-sm-left",id="classes")
+		div(class="container")
+			h1 Classes
+			p(class="lead") In Diablo 3, there are 6 main classes as shown below. Choose the one to your liking when you play!
+	div(class="container")
+		ul(class="nav nav-tabs nav-justified fullwidth")
+			li(class="active")
+				a(data-toggle="tab",href="#wd") Witch Doctor
+			li
+				a(data-toggle="tab",href="#barb") Barbarian
+			li
+				a(data-toggle="tab",href="#monk") Monk
+			li
+				a(data-toggle="tab",href="#wiz") Wizard
+			li
+				a(data-toggle="tab",href="#dh") Demon Hunter
+			li
+				a(data-toggle="tab",href="#crus") Crusader
+		div(class="tab-content")
+			div(id="wd",class="tab-pane fade in active")
+				h3 Witch Doctor
+				div(class="lead")
+					p Witch doctors mostly fight with spells and pets
+			div(id="barb",class="tab-pane fade")
+				h3 Barbarian
+				div(class="lead")
+					p Barbarians are great tank characters.
+			div(id="monk",class="tab-pane fade")
+				h3 Monk
+				div(class="lead")
+					p Monks are great at healing teammates and dealing devastating blows if necessary
+			div(id="wiz",class="tab-pane fade")
+				h3 Wizard
+				div(class="lead")
+					p Wizards use spells to fight.
+			div(id="dh",class="tab-pane fade")
+				h3 Demon Hunter
+				div(class="lead")
+					p Demon Hunters user their bow or crossbow to rapidly clear enemies.
+			div(id="crus",class="tab-pane fade")
+				h3 Crusader
+				div(class="lead")
+					p Crusaders user their shield to gain the advantage in battle.
+	block content

@@ -11,9 +11,9 @@ html
 	body
 		div(class="navbar-toggleable-xs",id="bd-main-nav")
 			nav(class="navbar navbar-inverse navbar-fixed-top")
-				div(class="container-fluid")
+				div(class="container")
 					div(class="navbar-header")
-						a(class="navbar-brand",href="#") Diablo Resource Centre
+						a(class="navbar-brand",href="/index") Diablo Resource Centre
 					ul(class="nav navbar-nav")
 						li
 							a(href="/difficultyoverview") Difficulty Overview
@@ -25,6 +25,7 @@ html
 							a(href="/leaderboards") Leaderboards
 						li
 							a(href="/seasonbests") Season Bests
-
-
-		block content
+	p &nbsp;&nbsp;
+	footer(class="footer") 
+		div(class="container") &copy; Copyright - Marrick and Thomas (2016)
+	block content
