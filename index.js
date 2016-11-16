@@ -37,7 +37,7 @@ app.get('/leaderboards', function(request,response){
 	response.render('leaderboards');
 });
 
-app.get('/seasonbests', function(request,response){
+app.get('/seasonbests:username:', function(request,response){
 	response.render('seasonbests');
 });
 
