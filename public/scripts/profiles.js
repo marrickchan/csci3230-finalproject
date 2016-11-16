@@ -1,4 +1,112 @@
+
+function loadData(profileName, gameTag){
+    var errorCheck = "The account could not be found.";
+    var seasonCount = 8;
+    // REMEMBER TO FILL IN USERNAME AND TAG IN FIELD
+    $.getJSON('https://us.api.battle.net/d3/profile/' + profileName + '%23' + gameTag + '/?locale=en_US&apikey=yn2njqfvwkbv2reb46zfczexj4sk7dst', 
+          function(data){
+        // Load data
+        // Make sure that the profile can be found
+        // Return message if not found
+        if(data.reason === errorCheck){
+            // TO DO:
+            // Logic for profile not found
+            console.log('detected');
+        } else {
+            // Find all season stats
+            for(var i = seasonCount; i >= 0; i--) {
+                var season = 'season' + i;
+                var seasonCurrent = data.seasonalProfiles[season];
+                // Only pull if season was played
+                if(seasonCurrent != undefined){
+                    // Pull Data
+                    var sdiv = $('<div>');
+                    $(sdiv).addClass('season');
+                    var stitle = $('<div>');
+                    $(stitle).html('Season '+i);
+                    $(stitle).addClass('accHeader');
+                    var scontent = $('<div>');
+                    $(scontent).addClass('accContent');
+                    var s_paragonLevel = $('<p>');
+                    $(s_paragonLevel).html("Paragon Level: " + seasonCurrent.paragonLevel);
+                    $(scontent).append(s_paragonLevel);
+                    var s_monsterkills = $('<p>');
+                    $(s_monsterkills).html("Monster Kills: " + seasonCurrent.kills.monsters);
+                    $(scontent).append(s_monsterkills);
+                    var s_elitekills = $('<p>');
+                    $(s_elitekills).html("Elite Kills: " + seasonCurrent.kills.elites);
+                    $(scontent).append(s_elitekills);
+                    var s_barb = $('<p>');
+                    $(s_barb).html("Barbarian Time Played: " + (100 * seasonCurrent.timePlayed.barbarian) + "h");
+                    $(scontent).append(s_barb);
+                    var s_crusader = $('<p>');
+                    $(s_crusader).html("Crusader Time Played: " + (100 * seasonCurrent.timePlayed.crusader) + "h");
+                    $(scontent).append(s_crusader);
+                    var s_demonhunter = $('<p>');
+                    $(s_demonhunter).html("Demon Hunter Time Played: " + (100* seasonCurrent.timePlayed['demon-hunter']) + "h");
+                    $(scontent).append(s_demonhunter);
+                    var s_monk = $('<p>');
+                    $(s_monk).html("Monk Time Played: " + (100 * seasonCurrent.timePlayed.monk) + "h");
+                    $(scontent).append(s_monk);
+                    var s_witchdoctor = $('<p>');
+                    $(s_witchdoctor).html("Witch Doctor Time Played: " + (100 * seasonCurrent.timePlayed['witch-doctor']) + "h");
+                    $(scontent).append(s_witchdoctor);
+                    var s_barbTime = $('<p>');
+                    $(s_barbTime).html("Barbarian Time Played: " + (100 * seasonCurrent.timePlayed.barbarian) + "h");
+                    $(scontent).append(s_barbTime);
+                    var s_highestHardcore = $('<p>');
+                    $(s_highestHardcore).html("Highest Hardcore Level: " + seasonCurrent.highestHardcoreLevel + "h");
+                    $(scontent).append(s_highestHardcore);
+                    var s_completeA1 = $('<p>');
+                    $(s_completeA1).html("Completed Act 1: " + completed(seasonCurrent.progression.act1));
+                    $(scontent).append(s_completeA1);
+                    var s_completeA2 = $('<p>');
+                    $(s_completeA2).html("Completed Act 2: " + completed(seasonCurrent.progression.act2));
+                    $(scontent).append(s_completeA2);
+                    var s_completeA3 = $('<p>');
+                    $(s_completeA3).html("Completed Act 3: " + completed(seasonCurrent.progression.act3));
+                    $(scontent).append(s_completeA3);
+                    var s_completeA4 = $('<p>');
+                    $(s_completeA4).html("Completed Act 4: " + completed(seasonCurrent.progression.act4));
+                    $(scontent).append(s_completeA4);
+                    var s_completeA5 = $('<p>');
+                    $(s_completeA5).html("Completed Act 5: " + completed(seasonCurrent.progression.act5));
+                    $(scontent).append(s_completeA5);
+
+                    $(sdiv).append(stitle);
+                    $(sdiv).append(scontent);
+
+                    // Add season into container
+                    $('#seasonstats').append(sdiv);
+                }   
+            }        
+
+            // Create Accordion
+            $('.season').accordion({
+               collapsible:true,
+               active: false
+            });
+        }
+    });   
+}
+
+function completed(input){
+    if(input === false){
+        return "No";
+    } else if(input === true){
+        return "Yes";
+    }
+}
+
 $(document).ready(function(){
+    // Get Profile Characters
+    // Display character and leaderboard by seasons
+    // Possibly do accordion?
+    // Structure:
+    loadData('Testimony', '1517');
+
+
+
     /** LAYOUT FOR CAREER PROFILES ON DIABLO API
     
     // NEED TO GRAB PROFILES

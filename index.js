@@ -37,8 +37,8 @@ app.get('/leaderboards', function(request,response){
 	response.render('leaderboards');
 });
 
-app.get('/seasonbests:username:', function(request,response){
-	response.render('seasonbests');
+app.get('/seasonstats', function(request,response){
+	response.render('seasonstats');
 });
 
 // Run Listener
