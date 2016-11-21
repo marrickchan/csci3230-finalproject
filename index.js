@@ -2,6 +2,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 // Middleware
 // Body Parser
@@ -15,6 +16,12 @@ app.use(express.static('public'));
 // Views directory, pug files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
+
+// Database Connection
+mongoose.connect('localhost:27017/diabloUsers');
+
+// Get the User schema
+var User = require("./models/user.js").User;
 
 // Routing
 app.get(['/', '/index'], function(request,response){
@@ -39,6 +46,30 @@ app.get('/leaderboards', function(request,response){
 
 app.get('/seasonstats', function(request,response){
 	response.render('seasonstats');
+});
+
+app.get('/register', function(request, response){
+	response.render('register');
+});
+
+//processRegistration
+app.post('/processRegistration', function(request, response){
+	var username = request.body.username;
+	var battleTag = request.body.battletag;
+	var battleTagID = request.body.identifier;
+	
+	console.log(username);
+	console.log(battleTag);
+	console.log(battleTagID);
+	
+	
+	
+	User.find({username:username}).then(function(results){
+		if (results.length==0){
+			response.render('register', {errorMessage:'Error: Username already taken'})
+		}
+	});
+	
 });
 
 // Run Listener
