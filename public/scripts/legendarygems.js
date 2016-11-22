@@ -1,10 +1,17 @@
-$(document).ready(function(){
+$(document).ready(function(){ 
     // CREATE ELEMENTS ON PAGE
     var container = $('#legendarygemsapplet');
-    var grLevelField = $('<input type="number" name="gemlevel" min="0" value="0">')
-    var bsContainer = $('<div id="bloodShards">')
+    var grLevelField = $('<input type="number" name="grlevel" min="0" value="0">');
+    var bsContainer = $('<div id="bloodShards">');
     var bsContainerDiv = $('<div>');
-  
+    var gemLevelField = $('<input type="number" name="gemLevel" min="0" value="0">');
+    var gemGuaranteeCheckbox = $('<input type="checkbox">');
+    var gemContainer = $('<div id="gemLevel">');
+    var gemContainerDiv = $('<div>');
+    var percentOne = $('<p>');
+    var percentTwo = $('<p>');
+    var percentThree = $('<p>');
+
     // ----------------------
     // Legendary Gem Section |
     // ----------------------
@@ -38,16 +45,67 @@ $(document).ready(function(){
 
     // Updating Blood Shard Values when Changing the input field
     $(grLevelField).change(function(){
+        $(percentOne).html('');
+        $(percentTwo).html('');
+        $(percentThree).html('');
+        $(percentOne).append(rollChance($(grLevelField).val(), $(gemLevelField).val(), 0));
+        $(percentTwo).append(rollChance($(grLevelField).val(), $(gemLevelField).val(), 1));
+        $(percentThree).append(rollChance($(grLevelField).val(), $(gemLevelField).val(), 2));
         updateBloodShards(bloodShardValue, bloodShardCap, $(grLevelField).val(), bsImage, bsContainerDiv);
     });
     $(grLevelField).keyup(function(){
+        $(percentOne).html('');
+        $(percentTwo).html('');
+        $(percentThree).html('');
+        $(percentOne).append(rollChance($(grLevelField).val(), $(gemLevelField).val(), 0));
+        $(percentTwo).append(rollChance($(grLevelField).val(), $(gemLevelField).val(), 1));
+        $(percentThree).append(rollChance($(grLevelField).val(), $(gemLevelField).val(), 2));
         updateBloodShards(bloodShardValue, bloodShardCap, $(grLevelField).val(), bsImage, bsContainerDiv);
     });
+
+    // --------------------
+    // Results Section     |
+    // --------------------
+    $(gemContainer).append(gemLevelField);
+    $(gemContainer).append(gemGuaranteeCheckbox);
+    $(gemContainerDiv).append(percentOne);
+    $(gemContainerDiv).append(percentTwo);
+    $(gemContainerDiv).append(percentThree);
+    $(gemContainer).append(gemContainerDiv);
+    $(container).append(gemContainer);
+
+    $(gemLevelField).change(function(){
+        $(percentOne).html('');
+        $(percentTwo).html('');
+        $(percentThree).html('');
+        $(percentOne).append(rollChance($(grLevelField).val(), $(gemLevelField).val(), 0));
+        $(percentTwo).append(rollChance($(grLevelField).val(), $(gemLevelField).val(), 1));
+        $(percentThree).append(rollChance($(grLevelField).val(), $(gemLevelField).val(), 2));
+    });
+
+    $(gemLevelField).keyup(function(){
+        $(percentOne).html('');
+        $(percentTwo).html('');
+        $(percentThree).html('');
+        $(percentOne).append(rollChance($(grLevelField).val(), $(gemLevelField).val(), 0));
+        $(percentTwo).append(rollChance($(grLevelField).val(), $(gemLevelField).val(), 1));
+        $(percentThree).append(rollChance($(grLevelField).val(), $(gemLevelField).val(), 2));
+    });
+
 });
 
 // Calculates the chance of leveling up your gem
-function rollChance(greaterRift, gemLevel){
-    return Math.min((greaterRift - gemLevel)*10, 10);
+// CHECK THIS CALCULATION
+function rollChance(greaterRift, gemLevel, rollNumber){
+    console.log("gr level: " + greaterRift + " gem level: " + gemLevel);
+    var subtracted = (greaterRift - (parseInt(gemLevel) + parseInt(rollNumber))) * 10;
+    console.log("subtraction: " + subtracted);
+    if(subtracted > 0 && subtracted <= 100){
+        return subtracted;
+    } else if (subtracted > 100){
+        return 100;
+    }
+    return 0;
 }
 
 // Updates bloodshard value into the display based on the greater rift being done
