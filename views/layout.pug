@@ -27,10 +27,16 @@ html
 						li
 							a(href="/seasonstats") Season Stats
 					ul(class="nav navbar-nav navbar-right")
-						li
-							a(href="/register") Register
-						li
-							a(href="/login") Log In
+						if (username && (username !== ''))
+							li
+								a(href="/profile") #{username}
+							li
+								a(href="/logout") Logout
+						else						
+							li
+								a(href="/register") Register
+							li
+								a(href="/login") Log In
 							
 							
 	p &nbsp;&nbsp;
