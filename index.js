@@ -47,22 +47,9 @@ function getUsername(request){
 	return username;
 }
 
-function getProfile(username){
-	
-	var user = User.find({username:username}).then(function(result){
-
-		if (result.length>0){
-				var email=result[0].email;
-				var battleTag=result[0].battleTag;
-				var battleTagID=result[0].battleTagID;
-
-				user.username = username;
-				user.email=email;
-				user.battleTag=battleTag;
-				user.battleTagID=battleTagID;
-		}
-	});
-	return user;
+function getProfilePromise(username){
+	var promise = User.find({username:username}).exec();
+	return promise;
 }
 
 // Routing
@@ -101,7 +88,12 @@ app.get('/login', function(request, response){
 app.get('/profile', function(request, response){
 	var username = getUsername(request);
 	
-	response.render('profile', getProfile(username));
+	User.find({username:username}).then(function(results){
+		email = results[0].email;
+		battleTag = results[0].battleTag;
+		battleTagID = results[0].battleTagID;
+		response.render('profile', {username: username, email: email});
+	});
 })
 
 //processRegistration
@@ -164,18 +156,36 @@ app.post('/processLogin', function(request,response){
 					response.render('login', {errorMessage: 'Error: Password incorrect!'});
 				}
 		}
-	});	
+	});
 });
 
 app.post('/changeEmail', function(request, response){
 	var session = request.session;
 	var username = session.username;
-	var email = body.request.email;
+	var email = request.body.email;
+	
+	console.log(email);
+	// Get the username
 	User.find({username:username}).then(function(results){
 		if (results.length>0){
+			// Update the user's e-mail
 			User.update({username:username}, {email:email}, {multi: false}, function(error, numAffected){
-				response.render('profile', getProfile(username));				
+				var success = true;
+				if (error || numAffected.nModified==0){
+					success=false;
+				}
+				
+				// Get the updated user info and go back to the profile page
+				User.find({username:username}).then(function(results){
+					email = results[0].email;
+					battleTag = results[0].battleTag;
+					battleTagID = results[0].battleTagID;
+					response.render('profile', {username: username, email: email});
+				});
 			});
+		}	else {
+			// Something went wrong finding the user
+			response.render('profile', {username:''});
 		}
 	});
 
