@@ -47,6 +47,24 @@ function getUsername(request){
 	return username;
 }
 
+function getProfile(username){
+	
+	var user = User.find({username:username}).then(function(result){
+
+		if (result.length>0){
+				var email=result[0].email;
+				var battleTag=result[0].battleTag;
+				var battleTagID=result[0].battleTagID;
+
+				user.username = username;
+				user.email=email;
+				user.battleTag=battleTag;
+				user.battleTagID=battleTagID;
+		}
+	});
+	return user;
+}
+
 // Routing
 app.get(['/', '/index'], function(request,response){
 	response.render('index', {username: getUsername(request)});
@@ -79,6 +97,12 @@ app.get('/register', function(request, response){
 app.get('/login', function(request, response){
 	response.render('login');
 });
+
+app.get('/profile', function(request, response){
+	var username = getUsername(request);
+	
+	response.render('profile', getProfile(username));
+})
 
 //processRegistration
 app.post('/processRegistration', function(request, response){
@@ -141,6 +165,20 @@ app.post('/processLogin', function(request,response){
 				}
 		}
 	});	
+});
+
+app.post('/changeEmail', function(request, response){
+	var session = request.session;
+	var username = session.username;
+	var email = body.request.email;
+	User.find({username:username}).then(function(results){
+		if (results.length>0){
+			User.update({username:username}, {email:email}, {multi: false}, function(error, numAffected){
+				response.render('profile', getProfile(username));				
+			});
+		}
+	});
+
 });
 
 app.get('/logout', function(request, response){

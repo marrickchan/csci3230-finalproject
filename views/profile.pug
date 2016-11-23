@@ -1,0 +1,19 @@
+extends layout
+block content
+	div(class="bd-pageheader text-xs-center text-sm-left",id="register")
+		div(class="container")
+			h1 Profile
+			if (username && username !== '')
+				p(class="lead") #{username}
+			else
+				p(class="lead") How did you get here?
+	
+	if (username && username !== '')
+		div(class="container" id="userProfile")
+			form(class="form-inlines" action="/changeEmail" method="post")
+				div(class="form-group")
+					button(id="changeEmailButton" class="btn btn-default col-md-1") Change
+					label(class="control-label col-md-1" for="email") E-Mail:
+				div(id="changeEmail" class="col-md-6")
+					p #{email}
+				button(type="submit" id="submitEmailButton" class="btn btn-success hidden") Submit
