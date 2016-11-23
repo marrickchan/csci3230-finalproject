@@ -49,7 +49,7 @@ $(document).ready(function(){
         $(gems).click(function(event){
             // Deselect the other gems
             $(gemsFirstRow).children('img').each(function(index, value){
-                $(value).removeClass('gemClicked');
+                $(value).removeClass('gemClicked');    
             });
             $(gemsSecondRow).children('img').each(function(index, value){
                 $(value).removeClass('gemClicked');
@@ -97,6 +97,7 @@ $(document).ready(function(){
         }
         updateBloodShards(bloodShardValue, bloodShardCap, $(grLevelField).val(), bsImage, bsContainerDiv);
     });
+
     $(grLevelField).keyup(function(){
         if($(gemGuaranteeCheckbox).prop('checked')){
             $(percentOne).html('First Roll Chance: 100 %');
@@ -117,6 +118,7 @@ $(document).ready(function(){
     // ----------------------
     // Gem Upgrade Section   |
     // ----------------------
+    $(gemContainer).append('<h1>Legendary Gem Level</h1>');
     $(gemContainer).append(gemLevelField);
     $(container).append(gemContainer);
     $(gemUpgradeBoxDiv).html('100% Upgrade: ');
