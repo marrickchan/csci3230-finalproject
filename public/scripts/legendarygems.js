@@ -1,4 +1,72 @@
 $(document).ready(function(){ 
+
+    // Legendary Gem Descriptions
+    var gemNames = 
+        [   'Bane of the Powerful',
+            'Bane of the Trapped',
+            'Enforcer',
+            'Gem of Efficacious Toxin',
+            'Gogok of Swiftness',
+            'Invigorating Gemstone',
+            'Mirinae, Teardrop of the Starweaver',
+            'Moratorium',
+            'Pain Enhancer',
+            'Simplicity\'s Strength',
+            'Taeguk',
+            'Wreath of Lightning',
+            'Zei\'s Stone of Vengeance',
+            'Boon of the Hoarder',
+            'Esoteric Alteration',
+            'Gem of Ease',
+            'Molten Wildebeest\'s Gizzard',
+            'Iceblink',
+            'Mutilation Guard',
+            'Bane of the Stricken'
+        ];
+    var gemEffects = 
+        [   'Gain 20% increased damage for 30.0 seconds after killing an elite pack.\n'+
+                'Gain 15% increased damage versus elites and take 15% reduced damage from elites. (Requires Rank 25)',
+            'Increase damage against enemies under the effects of control-impairing effects by 15.00%\n' +
+                'Gain an aura that reduces the movement speed of enemies within 15 yards by 30%. (Requires Rank 25)',
+            'Increase the damage of your pets by 15.00%\n'+
+                'Your pets take 90% less damage. (Requires Rank 25)',
+            'Poison all enemies hit for 2000% weapon damage over 10 seconds.\n' + 
+                'All enemies you poison take 10% increased damage from all sources and deal 10% less damage. (Requires Rank 25)',
+            'Gain Swiftness with every attack, increasing your Attack Speed by 1% and Dodge by 0.50% for 4 seconds. This effect stacks up to 15 times.\n'+
+                'Gain 1% Cooldown Reduction per stack of Swiftness. (Requires Rank 25)',
+            'Each hit done increases the healing received by 1.00% for 5 seconds. Stacks up to 10 times.\n' +
+                'You are immune to control impairing effects. (Requires Rank 25)',
+            '15% chance on hit to smite a nearby enemy for 3000% weapon damage as Holy and heal yourself for 3% of your maximum life.\n'+
+                'Smite a nearby enemy every 3 seconds. (Requires Rank 25)',
+            '35% of all damage taken is instead staggered and dealt to you over 3.00 seconds\n' +
+                '20% chance on kill to clear all staggered damage. (Requires Rank 25)',
+            'Critical hits cause the enemy to bleed for 2,500.0% weapon damage as Physical over 3 seconds.\n' +
+                'Gain Blood Frenzy, granting you 3% increased Attack Speed for each bleeding enemy within 20 yards. (Requires Rank 25)',
+            'Increase the damage of your primary skills by 25.00%\n' +
+                'Primary Skills heal you for 4% of maximum Life on hit. (Requires Rank 25)',
+            'Gain 2.00% increased damage for 1.5 seconds when you spend resource on a channel skill. This effect stacks up to 10 times\n' +
+                'Gain 2.0% increased Armor for every stack. (Requires Rank 25)',
+            '15% chance on hit to gain a Wreath of Lightning, dealing 1,200% weapon damage as Lightning every second to nearby enemies for 3 seconds\n' +
+                'While under the effect of the Wreath of Lightning, gain 25% increased movement speed. (Requires Rank 25)',
+            'Damage you deal is increased by 4.00% for every 10 yards between you and the enemy hit. Maximum 20.00% increase at 50 yards.\n' +
+                '20% chance on hit to Stun the enemy or 1 second',
+            '25.0% chance on killing an enemy to cause an explosion of gold.\n' +
+                'Gain 30% increased movement speed for 2 seconds after picking up gold. (Requires Rank 25)',
+            'Gain 10.0% non-Physical damage reduction.\n' + 
+                'While below half Life, your resistances to Cold, Fire, Lightning, Poison, and Arcane are increased by 75%. (Requires Rank 25)',
+            'Monster kills grant +500 experience.\n' + 
+                'Level Requirement Set to 1. (Requires Rank 25)',
+            'Regenerates 10,000 Life per Second.\n' +
+                'After not taking damage for 4 seconds, gain an absorb shield for 200% of your total Life per Second. (Requires Rank 25)',
+            'Your Cold skills now apply Chill effects and your Chill effects now Slow enemy movement speed by an additional 5.0%\n' + 
+                'Enemies you Chill have a 10% increased chance to be Critically Hit. (Requires Rank 25)',
+            'Gain 10.0% melee damage reduction\n' + 
+                'While below 50% Life, you may move unhindered through enemies. (Requires Rank 25)',
+            'Each attack you make against an enemy increases the damage it takes from your attacks by 0.80%\n' +
+                'Gain 25% increased damage against bosses and Rift Guardians. (Requires Rank 25)'
+        ];
+
+
     // CREATE ELEMENTS ON PAGE
     var container = $('#legendarygemsapplet');
     var grLevelField = $('<input type="number" name="grlevel" min="1" value="1">');
@@ -28,6 +96,9 @@ $(document).ready(function(){
         false, false, false, false, false, false, false];
     var gemsFirstRow = $('<div id="gemsFirstRow" class="gemImage">');
     var gemsSecondRow = $('<div id="gemsSecondRow" class="gemImage">');
+    var gemTitle = $('<h1>');
+    var gemDescription = $('<p>');
+    var gemInformation = $('<div id="gemDescription">');
     // Creating Spots for the Gem Images
     for(var i = 1 ; i < gemCount; i++){
         if(i == 11){
@@ -37,10 +108,16 @@ $(document).ready(function(){
 
         // Create 2 rows of gems
         if(i < 11){
-            var gems = $('<img src="images/' + i + '.png">');
+            
+            var gems = $('<img alt="' + i + '" src="images/' + i + '.png">');
             $(gemsFirstRow).append(gems);
+            if(i == 1){
+                $(gems).toggleClass('gemClicked');
+                $(gemTitle).html(gemNames[$(gems).attr('alt')]);
+                $(gemDescription).html(gemEffects[$(gems).attr('alt')]);
+            }
         } else {
-            var gems = $('<img src="images/' + i + '.png">');
+            var gems = $('<img alt="' + i + '" src="images/' + i + '.png">');
             $(gemsSecondRow).append(gems);
         }
         
@@ -56,6 +133,9 @@ $(document).ready(function(){
             });
     
             $(this).toggleClass('gemClicked');
+            $(gemTitle).html(gemNames[$(this).attr('alt')]);
+            $(gemDescription).html(gemEffects[$(this).attr('alt')]);
+        
 
             // To add display tooltip functionality
         });
@@ -63,6 +143,12 @@ $(document).ready(function(){
     $(container).append(gemsFirstRow);
     $(container).append(gemsSecondRow);
     
+    // Add container for gem descriptions
+    $(gemInformation).append(gemTitle);
+    $(gemInformation).append(gemDescription)
+    $(container).append(gemInformation);
+
+
     // --------------------
     // Blood Shard Section |
     // --------------------    
@@ -115,14 +201,24 @@ $(document).ready(function(){
         updateBloodShards(bloodShardValue, bloodShardCap, $(grLevelField).val(), bsImage, bsContainerDiv);
     });
 
+    // --------------------
+    // Results Section     |
+    // --------------------    
+    $(percentDiv).append(percentOne);
+    $(percentDiv).append(percentTwo);
+    $(percentDiv).append(percentThree);
+    $(container).append(percentDiv);
+
     // ----------------------
     // Gem Upgrade Section   |
     // ----------------------
     $(gemContainer).append('<h1>Legendary Gem Level</h1>');
     $(gemContainer).append(gemLevelField);
     $(container).append(gemContainer);
-    $(gemUpgradeBoxDiv).html('100% Upgrade: ');
-    $(gemUpgradeBoxDiv).append(gemGuaranteeCheckbox);
+    //$(gemUpgradeBoxDiv).append('<p>100% Upgrade: </p>');
+    //$(gemUpgradeBoxDiv).append(gemGuaranteeCheckbox);
+    $(gemContainer).append('<p style="display:inline">   100% Upgrade: </p>');
+    $(gemContainer).append(gemGuaranteeCheckbox);
     $(container).append(gemUpgradeBoxDiv);
     $(gemGuaranteeCheckbox).change(function(){
         // If user wants 100% checkrate
@@ -135,13 +231,6 @@ $(document).ready(function(){
         }
     });
 
-    // --------------------
-    // Results Section     |
-    // --------------------    
-    $(percentDiv).append(percentOne);
-    $(percentDiv).append(percentTwo);
-    $(percentDiv).append(percentThree);
-    $(container).append(percentDiv);
 
     $(gemLevelField).change(function(){
         if($(gemGuaranteeCheckbox).prop('checked')){

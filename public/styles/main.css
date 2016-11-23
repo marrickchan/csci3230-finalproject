@@ -20,11 +20,47 @@
     margin: 0 auto;
 }
 
-#percentages, #gemLevel, #perfectUpgrade, #bloodShards {
+#percentages, #gemLevel, #perfectUpgrade, #bloodShards, #gemDescription {
     display:block;
+
     text-align: center;
     margin: 0 auto;
     padding-top: 10px;
+}
+
+#bloodShards, #gemLevel {
+    margin-left: 5px;
+    margin-right: 5px;
+    display:block;
+    float: left;
+    width: 50%;
+    border: 3px solid red;
+    border-radius: 20px;
+    background: orange;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#gemDescription {
+    padding-left: 200px;
+    padding-right: 200px;
+    border: 3px solid red;
+    border-radius: 20px;
+    background: orange;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#percentages {
+    display:block;
+    float: right;
+    padding-left: auto;
+    padding-right: auto;
+    border: 3px solid red;
+    border-radius: 20px;
+    background: orange;
+    margin-bottom: 20px;
+    width: 48%;
 }
 
 /* Legendary Gem Applet End */
