@@ -6,10 +6,28 @@
     background-color: #FF3030;
 }
 
+/* Legendary Gem Applet */
+
 .gemClicked {
-    border: 500px solid red;
-    background-color: red;
+    border: 3px solid red;
+    border-radius: 15px;
+    background: orange;
 }
+
+.gemImage {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#percentages, #gemLevel, #perfectUpgrade, #bloodShards {
+    display:block;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+/* Legendary Gem Applet End */
 
 .accHeader {
     padding-left: 20px;
