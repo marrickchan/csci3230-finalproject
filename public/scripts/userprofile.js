@@ -42,11 +42,13 @@ $(document).ready(function(){
 		var getNewBattleTag = $('<input>').attr('type','text')
 																			.attr('name','battleTag')
 																			.attr('id','battleTag')
-																			.addClass('form-control');
+																			.addClass('form-control')
+																			.addClass('col-md-4');
 		
 		var getNewBattleTagID = $('<input>').attr('type','text')
 																			.attr('name','battleTagID')
 																			.attr('id','battleTagID')
+																			.attr('maxlength','4')
 																			.addClass('form-control')
 																			.addClass('col-md-1');
 		
