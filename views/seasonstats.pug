@@ -5,3 +5,24 @@ block content
 			h1 Season Bests
 			p(class="lead") Check how well you did each season here! Use Testimony#1517 as test. (Marrick's Profile)
 	div(class="container",id="seasonstats")
+		label(class="control-label col-md-12 col-xs-12",for="battletag") BattleTag:
+		div(class="col-md-6 cold-xs-6 form-group")
+			div(class="input-group")
+				input(type="text",
+						 id="battletag",
+						 name="battletag",
+						 placeholder="BattleTag",
+						 class="form-control",
+						 size="30")
+				span(class="input-group-addon") #	 
+				input(type="text",
+						 id="identifier",
+						 name="identifier",
+						 placeholder="",
+						 maxlength="4",
+						 size="5",
+						 class="form-control")
+
+		div(class="clearfix hidden-sm-up")
+		div(class="col-md-offset-0 col-md-1")
+			button(type="submit",class="btn btn-primary") Look Up

@@ -12,32 +12,44 @@ html
 		script(type="text/javascript",src="scripts/userprofile.js")
 	body
 		div(class="navbar-toggleable-xs",id="bd-main-nav")
-			nav(class="navbar navbar-inverse navbar-fixed-top")
+			nav(class="navbar navbar-inverse navbar-default navbar-fixed-top")
 				div(class="container")
 					div(class="navbar-header")
+						button(type="button",
+								class="navbar-toggle collapsed",
+								data-toggle="collapse",
+								data-target="bs-example-navbar-collapse-1",
+								aria-expanded="false")
+							span(class="sr-only") Toggle navigation
+							span(class="icon-bar")
+							span(class="icon-bar")
+							span(class="icon-bar")
 						a(class="navbar-brand",href="/index") Diablo Resource Centre
-					ul(class="nav navbar-nav")
-						li
-							a(href="/difficultyoverview") Difficulty Overview
-						li
-							a(href="/classes") Classes
-						li
-							a(href="/legendarygems") Legendary Gems
-						li
-							a(href="/leaderboards") Leaderboards
-						li
-							a(href="/seasonstats") Season Stats
-					ul(class="nav navbar-nav navbar-right")
-						if (username && (username !== ''))
+					div(class="collapse navbar-collapse",
+						id="bs-example-navbar-collapse-1"
+						aria-expanded="false")
+						ul(class="nav navbar-nav")
 							li
-								a(href="/profile") #{username}
+								a(href="/difficultyoverview") Difficulty Overview
 							li
-								a(href="/logout") Logout
-						else						
+								a(href="/classes") Classes
 							li
-								a(href="/register") Register
+								a(href="/legendarygems") Legendary Gems
 							li
-								a(href="/login") Log In
+								a(href="/leaderboards") Leaderboards
+							li
+								a(href="/seasonstats") Season Stats
+						ul(class="nav navbar-nav navbar-right")
+							if (username && (username !== ''))
+								li
+									a(href="/profile") #{username}
+								li
+									a(href="/logout") Logout
+							else						
+								li
+									a(href="/register") Register
+								li
+									a(href="/login") Log In
 							
 							
 	p &nbsp;&nbsp;
