@@ -88,13 +88,22 @@ app.get('/login', function(request, response){
 app.get('/profile', function(request, response){
 	var username = getUsername(request);
 	
-	User.find({username:username}).then(function(results){
+	var promise = User.find({username:username}).exec();
+	
+	promise.then(function(results){
 		email = results[0].email;
 		battleTag = results[0].battleTag;
 		battleTagID = results[0].battleTagID;
-		response.render('profile', {username: username, email: email});
+		if (results.length>0){
+			response.render('profile', {username: username,
+																	email: email,
+																 	battleTag: battleTag,
+																 	battleTagID:battleTagID});
+		} else {
+			response.render('profile');
+		}	
 	});
-})
+});
 
 //processRegistration
 app.post('/processRegistration', function(request, response){
@@ -163,24 +172,29 @@ app.post('/changeEmail', function(request, response){
 	var session = request.session;
 	var username = session.username;
 	var email = request.body.email;
+	var oldEmail = request.body.oldEmail;
 	
-	console.log(email);
+	console.log(oldEmail);
+	
+	if (email==null || email===""){
+		email = oldEmail;
+	}
+	
 	// Get the username
 	User.find({username:username}).then(function(results){
 		if (results.length>0){
 			// Update the user's e-mail
 			User.update({username:username}, {email:email}, {multi: false}, function(error, numAffected){
-				var success = true;
-				if (error || numAffected.nModified==0){
-					success=false;
-				}
-				
-				// Get the updated user info and go back to the profile page
+
+				// Get the updated (or not) user info and go back to the profile page
 				User.find({username:username}).then(function(results){
 					email = results[0].email;
 					battleTag = results[0].battleTag;
 					battleTagID = results[0].battleTagID;
-					response.render('profile', {username: username, email: email});
+					response.render('profile', {username: username,
+																	email: email,
+																 	battleTag: battleTag,
+																 	battleTagID:battleTagID});
 				});
 			});
 		}	else {
@@ -188,7 +202,67 @@ app.post('/changeEmail', function(request, response){
 			response.render('profile', {username:''});
 		}
 	});
+});
 
+app.post('/changeBattleTag',function(request,response){
+	var session = request.session;
+	var username = session.username;
+	var battleTag = request.body.battleTag;
+	var battleTagID = request.body.battleTagID;
+	
+	User.find({username:username}).then(function(results){
+		if (results.length>0){
+			// Update the user's battleTag
+			
+			User.update({username:username},{battleTag:battleTag, battleTagID:battleTagID}, {multi:false}, function(error, numAffected){
+				
+				// Get the updated (or not) user info and go back to the profile page
+				User.find({username:username}).then(function(results){
+					email = results[0].email;
+					battleTag = results[0].battleTag;
+					battleTagID = results[0].battleTagID;
+					response.render('profile', {username: username,
+																			email: email,
+																			battleTag: battleTag,
+																			battleTagID:battleTagID});
+				});
+			
+			});
+		} else {
+			//Something went wrong finding the user
+			response.render('profile', {username:''});
+		}
+	});
+});
+
+app.post('/changePassword',function(request,response){
+	var session = request.session;
+	var username = session.username;
+	var password = request.body.password;
+	var hash = bcrypt.hashSync(password);
+	
+	User.find({username:username}).then(function(results){
+		if(results.length>0){
+			// Update the user's password
+			
+			User.update({username:username},{hashedPassword:hash},{multi:false}, function(error, numAffected){
+				// Get the updated (or not) user info and go back to the profile page
+				User.find({username:username}).then(function(results){
+					email = results[0].email;
+					battleTag = results[0].battleTag;
+					battleTagID = results[0].battleTagID;
+					response.render('profile', {username: username,
+																			email: email,
+																			battleTag: battleTag,
+																			battleTagID:battleTagID});
+				});
+			});
+		} else {
+			//Something went wrong finding the user
+			response.render('profile', {username:''});
+		}
+		
+	});
 });
 
 app.get('/logout', function(request, response){

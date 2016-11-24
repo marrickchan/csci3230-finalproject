@@ -10,10 +10,36 @@ block content
 	
 	if (username && username !== '')
 		div(class="container" id="userProfile")
-			form(class="form-inlines" action="/changeEmail" method="post")
-				div(class="form-group")
-					button(id="changeEmailButton" class="btn btn-default col-md-1") Change
-					label(class="control-label col-md-1" for="email") E-Mail:
-				div(id="changeEmail" class="col-md-6")
-					p #{email}
-				button(type="submit" id="submitEmailButton" class="btn btn-success hidden") Submit
+			div(class="container col-md-12" id="emailProfile")
+				form(action="/changeEmail" method="post")
+					div(class="input-group col-md-12")
+						div(class="form-group")
+							button(id="changeEmailButton" class="btn btn-default col-md-1") Change
+							label(class="control-label col-md-1" for="email") E-Mail:
+						div(id="changeEmail" class="col-md-4")
+							p #{email}
+						div(class="btn-group form-inline")
+							button(type="submit" id="submitEmailButton" class="btn btn-success hidden") Submit
+							button(id="cancelEmailButton" class="btn btn-danger hidden") Cancel
+			div(class="container col-md-12" id="battleTagProfile")
+				form(action="/changeBattleTag" method="post")
+					div(class="input-group col-md-12")
+						div(class="form-group")
+							button(id="changeBattleTagButton" class="btn btn-default col-md-1") Change
+							label(class="control-label col-md-1" for="battleTag") BattleTag:
+						div(id="changeBattleTag" class="col-md-4")
+							p #{battleTag} # #{battleTagID}
+						div(class="btn-group form-inline")
+							button(type="submit" id="submitBattleTagButton" class="btn btn-success hidden") Submit
+							button(id="cancelBattleTagButton" class="btn btn-danger hidden") Cancel
+			div(class="container col-md-12" id="passwordProfile")
+				form(action="/changePassword" method="post")
+					div(class="input-group col-md-12")
+						div(class="form-group")
+							button(id="changePasswordButton" class="btn btn-default col-md-1") Change
+							label(class="control-label col-md-1" for="password") Password:
+						div(id="changePassword" class="col-md-4")
+							p ********
+						div(class="btn-group form-inline")
+							button(type="submit" id="submitPasswordButton" class="btn btn-success hidden") Submit
+							button(id="cancelPasswordButton" class="btn btn-danger hidden") Cancel
