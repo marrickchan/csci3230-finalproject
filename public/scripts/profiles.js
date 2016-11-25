@@ -125,7 +125,7 @@ $(document).ready(function(){
     // Display character and leaderboard by seasons
     // Possibly do accordion?
     // Structure:
-
+	
     // Button for Navbar
     $('.navbar-toggle').click(function(event){
         // Collapsed going to uncollapsed
@@ -153,8 +153,14 @@ $(document).ready(function(){
 			loadData(battleTag, identifier);
 			
 		});
-											 
-
+		
+	
+		// If the battleTag and identifier aren't empty on load then call loadData
+		var battleTag = $('#battletag').val();
+		var identifier = $('#identifier').val();
+		if (battleTag!="" && identifier!=""){
+			loadData(battleTag, identifier);
+		}
 
     /** LAYOUT FOR HERO PROFILES ON DIABLO API
     
