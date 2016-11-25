@@ -74,7 +74,19 @@ app.get('/leaderboards', function(request,response){
 });
 
 app.get('/seasonstats', function(request,response){
-	response.render('seasonstats', {username: getUsername(request)});
+	var username = getUsername(request);
+	var promise = User.find({username:username}).exec();
+	promise.then(function(results){
+		if (results.length>0){
+			var battleTag = results[0].battleTag;
+			var battleTagID = results[0].battleTagID;
+			response.render('seasonstats', {username: username, 
+																			battleTag:battleTag,
+																			battleTagID:battleTagID});
+		} else {
+			response.render('seasonstats', {username: username});
+		}
+	});
 });
 
 app.get('/register', function(request, response){
@@ -87,7 +99,6 @@ app.get('/login', function(request, response){
 
 app.get('/profile', function(request, response){
 	var username = getUsername(request);
-	
 	var promise = User.find({username:username}).exec();
 	
 	promise.then(function(results){
@@ -100,7 +111,7 @@ app.get('/profile', function(request, response){
 																 	battleTag: battleTag,
 																 	battleTagID:battleTagID});
 		} else {
-			response.render('profile');
+			response.render('profile', {username:username});
 		}	
 	});
 });

@@ -1,7 +1,12 @@
 
 function loadData(profileName, gameTag){
     var errorCheck = "The account could not be found.";
+		var noSeasons = "The account was found, but no seasonal data could be obtained."
     var seasonCount = 8;
+		
+		// Hide the error message
+		$('#errorMessage').removeClass('visible').addClass('invisible').text('');
+	
     // REMEMBER TO FILL IN USERNAME AND TAG IN FIELD
     $.getJSON('https://us.api.battle.net/d3/profile/' + profileName + '%23' + gameTag + '/?locale=en_US&apikey=yn2njqfvwkbv2reb46zfczexj4sk7dst', 
           function(data){
@@ -9,16 +14,27 @@ function loadData(profileName, gameTag){
         // Make sure that the profile can be found
         // Return message if not found
         if(data.reason === errorCheck){
-            // TO DO:
-            // Logic for profile not found
+						$('#errorMessage').removeClass('invisible').addClass('visible').text(errorCheck);
             console.log('detected');
         } else {
             // Find all season stats
-            for(var i = seasonCount; i >= 0; i--) {
+            
+						// Set a flag to clear the existing data
+						// We do this in case a profile is found but no data is found for that profile
+						var wipe = false;
+						
+						for(var i = seasonCount; i >= 0; i--) {
                 var season = 'season' + i;
                 var seasonCurrent = data.seasonalProfiles[season];
                 // Only pull if season was played
                 if(seasonCurrent != undefined){
+										
+										// Once a season with data is found we will empty the existing data
+										if (wipe==false){
+											$('#seasonstats').empty();
+											wipe = true;											
+										}
+									
                     // Pull Data
                     var sdiv = $('<div>');
                     $(sdiv).addClass('season');
@@ -72,14 +88,20 @@ function loadData(profileName, gameTag){
                     var s_completeA5 = $('<p>');
                     $(s_completeA5).html("Completed Act 5: " + completed(seasonCurrent.progression.act5));
                     $(scontent).append(s_completeA5);
-
+									
                     $(sdiv).append(stitle);
-                    $(sdiv).append(scontent);
-
+                    $(sdiv).append(scontent);										
+									
                     // Add season into container
                     $('#seasonstats').append(sdiv);
                 }   
-            }        
+            }
+						
+						// Set an error message if the profile was found but no season data was pulled
+						if(wipe==false){
+							$('#seasonstats').empty();
+							$('#errorMessage').removeClass('invisible').addClass('visible').text(noSeasons);
+						}
 
             // Create Accordion
             $('.season').accordion({
@@ -120,8 +142,18 @@ $(document).ready(function(){
 
         $('.navbar-toggle').toggleClass('collapsed');
     })
-
-    //loadData('Testimony', '1517');
+		
+		$('#lookup').click(function(){
+			
+			var battleTag = $('#battletag').val();
+			var identifier = $('#identifier').val();
+			
+			console.log(battleTag);
+			console.log(identifier);
+			loadData(battleTag, identifier);
+			
+		});
+											 
 
 
     /** LAYOUT FOR HERO PROFILES ON DIABLO API
