@@ -4,4 +4,40 @@ block content
 		div(class="container")
 			h1 Leaderboards
 			p(class="lead") See who is doing better than the rest!
-	div(class="container",id="leaderboards")
+	div(class="container",id="selection")
+		label(for="seasonNumber")  Season: 
+		select(id="seasonNumber")
+			option(value="1") 1
+			option(value="2") 2
+			option(value="3") 3
+			option(value="4") 4
+			option(value="5") 5
+			option(value="6") 6
+			option(value="7") 7
+			option(value="8") 8
+		p
+		label(for="leaderboardType")  Leaderboard:
+		select(id="leaderboardType")
+			option(value="rift-barbarian") Barbarian
+			option(value="rift-hardcore-barbarian") Hardcore Barbarian
+			option(value="rift-crusader") Crusader
+			option(value="rift-hardcore-crusader") Hardcore Crusader
+			option(value="rift-monk") Monk
+			option(value="rift-hardcore-monk") Hardcore Monk
+			option(value="rift-wd") Witch Doctor
+			option(value="rift-hardcore-wd") Harcore Witch Doctor
+			option(value="rift-dh") Demon Hunter
+			option(value="rift-hardcore-dh") Hardcore Demon Hunter
+			option(value="rift-wizard") Wizard
+			option(value="rift-hardcore-wizard") Hardcore Wizard
+			option(value="rift-team-2") 2 Player
+			option(value="rift-hardcore-team-2") Hardcore 2 Player 
+			option(value="rift-team-3") 3 Player
+			option(value="rift-hardcore-team-3") Hardcore 3 Player
+			option(value="rift-team-4") 4 Player
+			option(value="rift-hardcore-team-4") Hardcore 4 Player
+		p
+		div(class="col-md-offset-0 col-md-1")
+			button(type="submit",class="btn btn-primary", id="getLeaderboard") Retrieve Leaderboard
+	p
+	div(class="container",id="leaderboardResults")

@@ -8,8 +8,7 @@ function loadData(profileName, gameTag){
 	$('#errorMessage').removeClass('visible').addClass('invisible').text('');
 	
     // REMEMBER TO FILL IN USERNAME AND TAG IN FIELD
-    $.getJSON('https://us.api.battle.net/d3/profile/' + profileName + '%23' + gameTag + '/?locale=en_US&apikey=yn2njqfvwkbv2reb46zfczexj4sk7dst', 
-          function(data){
+    $.getJSON('https://us.api.battle.net/d3/profile/' + profileName + '%23' + gameTag + '/?locale=en_US&apikey=yn2njqfvwkbv2reb46zfczexj4sk7dst', function(data){
         // Load data
         // Make sure that the profile can be found
         // Return message if not found
@@ -120,8 +119,142 @@ function completed(input){
     }
 }
 
-function fetchLeaderboards(){
+function fetchLeaderboards(season, searchString){
+    // Clear results section before putting new one
+    $('#leaderboardResults').html('');
     
+    $(tr_first).append(th_order);
+    var tablediv = $('<div class="table-responsive">');
+    var table = $('<table class="table table-striped table-hover">');
+    var tr_first = $('<tr>');
+    var rank = $('<th>');
+    var th_order = $('<th>');
+    $(th_order).html('Rank Number');
+    var th_grlevel = $('<th>');
+    $(th_grlevel).html('Greater Rift Level');
+    var th_battletag = $('<th>');
+    $(th_battletag).html('Battle Tag');
+    var th_herolevel = $('<th>');
+    $(th_herolevel).html('Hero Level');
+    var th_paragonlevel = $('<th>');
+    $(th_paragonlevel).html('Paragon Level');
+    var th_clantag = $('<th>');
+    $(th_clantag).html('Clan Tag');
+    var th_clanname = $('<th>');
+    $(th_clanname).html('Clan Name');
+    $(tr_first).append(th_order);
+    $(tr_first).append(th_grlevel);
+    $(tr_first).append(th_battletag);
+    $(tr_first).append(th_herolevel);
+    $(tr_first).append(th_paragonlevel);
+    $(tr_first).append(th_clantag);
+    $(tr_first).append(th_clanname);
+    $(table).append(tr_first);
+    
+
+    // Error Check
+    var errorCheck = "Not found";
+    $.getJSON('https://us.api.battle.net/data/d3/season/' + season + '/leaderboard/' + searchString + '?access_token=xtrg4srrjm3jpamge33uazfe', function(data){
+        // data.row[0].data[0].number // Rank
+        // data.row[0].data[1].number // GR Level
+        // data.row[0].data[4].string // Battle Tag
+        // data.row[0].player.data[4].number // Hero Level
+        // data.row[0].player.data[5].number // Paragon Level
+        // data.row[0].player.data[6].string // Clan tag
+        // data.row[0].player.data[7].string // Clan Name
+        
+        if(data.detail == errorCheck){
+
+        } else {
+            console.log(data.row[2].data[4].string);
+            
+            for(var i = 0; i < 100; i++){
+                var tr_row = $('<tr>');
+                var td_order = $('<th>');
+                $(td_order).html(data.row[i].data[0].number);
+                $(tr_row).append(td_order);
+                var td_grlevel = $('<th>');
+                $(td_grlevel).html(data.row[i].data[1].number);
+                $(tr_row).append(td_grlevel);
+
+                var td_battletag = $('<th>');
+                if(data.row[i].data.length < 5){
+                    $(td_battletag).html('N/A');    
+                } else {
+                    $(td_battletag).html(data.row[i].data[4].string);    
+                }
+                
+                if(data.row[i].player[0].data.length == 8){
+                    $(tr_row).append(td_battletag);
+                    var td_herolevel = $('<th>');
+                    $(td_herolevel).html(data.row[i].player[0].data[3].number);
+                    console.log("Hero Level: " + data.row[i].player[0].data[3].number);
+                    $(tr_row).append(td_herolevel);
+                    var td_paragonlevel = $('<th>');
+                    $(td_paragonlevel).html(data.row[i].player[0].data[4].number);
+                    console.log("Paragon Level: " + data.row[i].player[0].data[4].number);
+                    console.log("Size of Data: " + data.row[i].player[0].data.length);
+                    $(tr_row).append(td_paragonlevel);
+
+
+                    // Check if they are in a clan
+                    var td_clantag = $('<th>');
+                    var td_clanname = $('<th>');
+                    if(data.row[i].player[0].data.length < 9){
+                        $(td_clantag).html('N/A');
+                        $(td_clanname).html('N/A');
+                    } else {
+                        $(td_clantag).html(data.row[i].player[0].data[5].string);
+                        $(td_clanname).html(data.row[i].player[0].data[6].string);
+                    }
+                    $(tr_row).append(td_clantag);
+                    $(tr_row).append(td_clanname);
+                } else if(data.row[i].player[0].data.length <= 9) {
+                    $(tr_row).append(td_battletag);
+                    var td_herolevel = $('<th>');
+                    $(td_herolevel).html(data.row[i].player[0].data[4].number);
+                    console.log("Hero Level: " + data.row[i].player[0].data[4].number);
+                    $(tr_row).append(td_herolevel);
+                    var td_paragonlevel = $('<th>');
+                    $(td_paragonlevel).html(data.row[i].player[0].data[5].number);
+                    console.log("Paragon Level: " + data.row[i].player[0].data[5].number);
+                    console.log("Size of Data: " + data.row[i].player[0].data.length);
+                    $(tr_row).append(td_paragonlevel);
+
+
+                    // Check if they are in a clan
+                    var td_clantag = $('<th>');
+                    var td_clanname = $('<th>');
+                    if(data.row[i].player[0].data.length < 9){
+                        $(td_clantag).html('N/A');
+                        $(td_clanname).html('N/A');
+                    } else {
+                        $(td_clantag).html(data.row[i].player[0].data[6].string);
+                        $(td_clanname).html(data.row[i].player[0].data[7].string);
+                    }
+                    $(tr_row).append(td_clantag);
+                    $(tr_row).append(td_clanname);
+                }
+                
+                
+                $(table).append(tr_row);
+
+            }
+            /*
+            data.row[0].data[0].number
+            data.row[0].data[1].number
+            data.row[0].data[4].string
+            data.row[0].player[0].data[4].number
+            data.row[0].player[0].data[5].number
+            data.row[0].player[0].data[6].string
+            data.row[0].player[0].data[7].string*/
+        }
+
+
+    });
+
+    $(tablediv).append(table);
+    $('#leaderboardResults').append(tablediv);
 }
 
 $(document).ready(function(){	
@@ -178,23 +311,12 @@ $(document).ready(function(){
 	}
 
     // Leaderboards
-    // https://us.api.battle.net/data/d3/season/1/leaderboard/{SEARCH_STRING}?access_token=xtrg4srrjm3jpamge33uazfe
-    // SEARCH_STRING:
-    // achievement-points
-    // rift-hardcore-barbarian
-    // rift-barbarian
-    // rift-hardcore-monk
-    // rift-monk
-    // rift-hardcore-dh
-    // rift-dh
-    // rift-hardcore-crusader
-    // rift-crusader
-    // rift-hardcore-wd
-    // rift-wd
-    // rift-hardcore-wizard
-    // rift-wizard
-    // rift-hardcore-team-3
-    // rift-team-3
+
+    $('#getLeaderboard').click(function(){
+        console.log('pressed'); 
+        fetchLeaderboards($('#seasonNumber').val(), $('#leaderboardType').val());
+    });
+    // https://us.api.battle.net/data/d3/season/{SEASON}/leaderboard/{SEARCH_STRING}?access_token=xtrg4srrjm3jpamge33uazfe
     /*
     "row": [
     {
