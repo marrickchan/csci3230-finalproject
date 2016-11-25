@@ -1,11 +1,11 @@
 
 function loadData(profileName, gameTag){
     var errorCheck = "The account could not be found.";
-		var noSeasons = "The account was found, but no seasonal data could be obtained."
+	var noSeasons = "The account was found, but no seasonal data could be obtained."
     var seasonCount = 8;
 		
-		// Hide the error message
-		$('#errorMessage').removeClass('visible').addClass('invisible').text('');
+	// Hide the error message
+	$('#errorMessage').removeClass('visible').addClass('invisible').text('');
 	
     // REMEMBER TO FILL IN USERNAME AND TAG IN FIELD
     $.getJSON('https://us.api.battle.net/d3/profile/' + profileName + '%23' + gameTag + '/?locale=en_US&apikey=yn2njqfvwkbv2reb46zfczexj4sk7dst', 
@@ -14,26 +14,26 @@ function loadData(profileName, gameTag){
         // Make sure that the profile can be found
         // Return message if not found
         if(data.reason === errorCheck){
-						$('#errorMessage').removeClass('invisible').addClass('visible').text(errorCheck);
+			$('#errorMessage').removeClass('invisible').addClass('visible').text(errorCheck);
             console.log('detected');
         } else {
             // Find all season stats
             
-						// Set a flag to clear the existing data
-						// We do this in case a profile is found but no data is found for that profile
-						var wipe = false;
-						
-						for(var i = seasonCount; i >= 0; i--) {
+			// Set a flag to clear the existing data
+			// We do this in case a profile is found but no data is found for that profile
+			var wipe = false;
+			
+			for(var i = seasonCount; i >= 0; i--) {
                 var season = 'season' + i;
                 var seasonCurrent = data.seasonalProfiles[season];
                 // Only pull if season was played
                 if(seasonCurrent != undefined){
 										
-										// Once a season with data is found we will empty the existing data
-										if (wipe==false){
-											$('#seasonstats').empty();
-											wipe = true;											
-										}
+					// Once a season with data is found we will empty the existing data
+					if (wipe==false){
+						$('#seasonstats').empty();
+						wipe = true;											
+					}
 									
                     // Pull Data
                     var sdiv = $('<div>');
@@ -97,11 +97,11 @@ function loadData(profileName, gameTag){
                 }   
             }
 						
-						// Set an error message if the profile was found but no season data was pulled
-						if(wipe==false){
-							$('#seasonstats').empty();
-							$('#errorMessage').removeClass('invisible').addClass('visible').text(noSeasons);
-						}
+    		// Set an error message if the profile was found but no season data was pulled
+    		if(wipe==false){
+    			$('#seasonstats').empty();
+    			$('#errorMessage').removeClass('invisible').addClass('visible').text(noSeasons);
+    		}
 
             // Create Accordion
             $('.season').accordion({
@@ -120,12 +120,14 @@ function completed(input){
     }
 }
 
-$(document).ready(function(){
-    // Get Profile Characters
-    // Display character and leaderboard by seasons
-    // Possibly do accordion?
-    // Structure:
-	
+function fetchLeaderboards(){
+    
+}
+
+$(document).ready(function(){	
+
+    // Season Stats
+    // NAVBAR COLLAPSIBLE
     // Button for Navbar
     $('.navbar-toggle').click(function(event){
         // Collapsed going to uncollapsed
@@ -138,29 +140,119 @@ $(document).ready(function(){
             $('#bs-example-navbar-collapse-1').attr('aria-expanded','false');
         }
         
-        
-
         $('.navbar-toggle').toggleClass('collapsed');
-    })
+    });
+
+    // Hide Search Again Button
+    $('#searchAgain').addClass('invisible');
+
+    // Search user
+	$('#lookup').click(function(){
 		
-		$('#lookup').click(function(){
-			
-			var battleTag = $('#battletag').val();
-			var identifier = $('#identifier').val();
-			
-			console.log(battleTag);
-			console.log(identifier);
-			loadData(battleTag, identifier);
-			
-		});
-		
-	
-		// If the battleTag and identifier aren't empty on load then call loadData
 		var battleTag = $('#battletag').val();
 		var identifier = $('#identifier').val();
-		if (battleTag!="" && identifier!=""){
-			loadData(battleTag, identifier);
-		}
+		
+		console.log(battleTag);
+		console.log(identifier);
+        $('#getBattleTag').addClass('invisible');
+        $('#searchAgain').removeClass('invisible');
+		loadData(battleTag, identifier);
+		
+	});
+
+    $('#search').click(function(){
+        $('#getBattleTag').removeClass('invisible');
+        $('#searchAgain').addClass('invisible');
+        $('#errorMessage').addClass('invisible');
+        $('#seasonstats').empty();
+    });
+		
+	
+	// If the battleTag and identifier aren't empty on load then call loadData
+	var battleTag = $('#battletag').val();
+	var identifier = $('#identifier').val();
+	if (battleTag!="" && identifier!=""){
+        $('#getBattleTag').addClass('invisible');
+        $('#searchAgain').removeClass('invisible');
+		loadData(battleTag, identifier);
+	}
+
+    // Leaderboards
+    // https://us.api.battle.net/data/d3/season/1/leaderboard/{SEARCH_STRING}?access_token=xtrg4srrjm3jpamge33uazfe
+    // SEARCH_STRING:
+    // achievement-points
+    // rift-hardcore-barbarian
+    // rift-barbarian
+    // rift-hardcore-monk
+    // rift-monk
+    // rift-hardcore-dh
+    // rift-dh
+    // rift-hardcore-crusader
+    // rift-crusader
+    // rift-hardcore-wd
+    // rift-wd
+    // rift-hardcore-wizard
+    // rift-wizard
+    // rift-hardcore-team-3
+    // rift-team-3
+    /*
+    "row": [
+    {
+        "player": [{
+            "key": "7844953",
+            "accountId": 7844953,
+            "data": [{
+                "id": "HeroBattleTag",
+                "string": "JohnFox#1903"
+            }, {
+                "id": "GameAccount",
+                "number": 7844953
+            }, {
+                "id": "HeroClass",
+                "string": "barbarian"
+            }, {
+                "id": "HeroGender",
+                "string": "m"
+            }, {
+                "id": "HeroLevel",
+                "number": 70
+            }, {
+                "id": "ParagonLevel",
+                "number": 390
+            }, {
+                "id": "HeroClanTag",
+                "string": "HC"
+            }, {
+                "id": "ClanName",
+                "string": "HC Hardcore"
+            }, {
+                "id": "HeroId",
+                "number": 53225244
+            }]
+        }],
+        "order": 61,
+        "data": [{
+            "id": "Rank",
+            "number": 61
+        }, {
+            "id": "RiftLevel",
+            "number": 35
+        }, {
+            "id": "RiftTime",
+            "timestamp": 609816
+        }, {
+            "id": "CompletedTime",
+            "timestamp": 1421200938000
+        }, {
+            "id": "BattleTag",
+            "string": "JohnFox#1903"
+        }]
+    },
+    */
+
+
+
+
 
     /** LAYOUT FOR HERO PROFILES ON DIABLO API
     
