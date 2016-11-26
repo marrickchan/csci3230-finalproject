@@ -113,7 +113,7 @@ $(document).ready(function(){
             $(gemsFirstRow).append(gems);
             if(i == 1){
                 $(gems).toggleClass('gemClicked');
-                $(gemTitle).html(gemNames[$(gems).attr('alt')]);
+                $(gemTitle).html(gemNames[$(gems).attr('alt') - 1]);
                 $(gemDescription).html(gemEffects[$(gems).attr('alt')]);
             }
         } else {
@@ -133,7 +133,7 @@ $(document).ready(function(){
             });
     
             $(this).toggleClass('gemClicked');
-            $(gemTitle).html(gemNames[$(this).attr('alt')]);
+            $(gemTitle).html(gemNames[$(this).attr('alt') - 1]);
             $(gemDescription).html(gemEffects[$(this).attr('alt')]);
         
 
